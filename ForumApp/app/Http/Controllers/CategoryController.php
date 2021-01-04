@@ -16,13 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $x= Category::latest()->get();
-$newX=array();
-        foreach($x as $category){
-$y=new CategoryResource($category);
-array_push($newX,$y);
-        }
-        return $newX;
+        return CategoryResource::collection(Category::latest()->get());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Question;
 use App\Model\Reply;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,9 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        return Reply::latest()->get();
+        return $question->replies;
     }
 
     /**
@@ -34,10 +35,10 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Question $question,Request $request)
     {
-        Reply::create($request->all());
-return response('Created',Response::HTTP_CREATED);
+       $reply= $question->replies()->create($request->all());
+        return response(['reply'=> $reply],Response::HTTP_CREATED);
     }
 
     /**
@@ -46,7 +47,7 @@ return response('Created',Response::HTTP_CREATED);
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Reply $reply)
+    public function show(Question $question,Reply $reply)
     {
         return $reply;
     }
@@ -69,10 +70,10 @@ return response('Created',Response::HTTP_CREATED);
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
+    public function update(Question $question, Request $request, Reply $reply)
     {
-          $reply->update($request->all());
-       return response('UPDATED',Response::HTTP_OK);
+      $reply=    $reply->update($request->all());
+       return response(['reply'=> $reply],Response::HTTP_OK);
     }
 
     /**
@@ -81,7 +82,7 @@ return response('Created',Response::HTTP_CREATED);
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Question $question,Reply $reply)
     {
         $reply->delete();
 return response('Deleted',Response::HTTP_OK);

@@ -16,4 +16,5 @@ class Reply extends Model
     public function question(){
       return  $this->belongsTo(Question::class);
     }
+    protected $guarded=[];
 }
