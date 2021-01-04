@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Reply;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReplyController extends Controller
 {
@@ -14,7 +15,7 @@ class ReplyController extends Controller
      */
     public function index()
     {
-        //
+        return Reply::latest()->get();
     }
 
     /**
@@ -35,7 +36,8 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Reply::create($request->all());
+return response('Created',Response::HTTP_CREATED);
     }
 
     /**
@@ -46,7 +48,7 @@ class ReplyController extends Controller
      */
     public function show(Reply $reply)
     {
-        //
+        return $reply;
     }
 
     /**
@@ -69,7 +71,8 @@ class ReplyController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
-        //
+          $reply->update($request->all());
+       return response('UPDATED',Response::HTTP_OK);
     }
 
     /**
@@ -80,6 +83,7 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $reply->delete();
+return response('Deleted',Response::HTTP_OK);
     }
 }
