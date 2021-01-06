@@ -7,8 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import Vuetify from "../plugins/vuetify"
-
+import Vue from "vue";
+import Vuetify from "vuetify";
+Vue.use(Vuetify);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19,8 +20,8 @@ import Vuetify from "../plugins/vuetify"
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import AppHome from './components/AppHome.vue';
+Vue.component('app-home', AppHome);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,6 +30,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    vuetify: Vuetify,
+    vuetify: new Vuetify(),
     el: '#app',
 });
