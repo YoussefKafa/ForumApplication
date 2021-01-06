@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 window.Vue = require('vue');
 import Vue from "vue";
 import Vuetify from "vuetify";
@@ -28,8 +28,9 @@ Vue.component('app-home', AppHome);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+import router from "./Router/router.js"
 const app = new Vue({
     vuetify: new Vuetify(),
     el: '#app',
+    router
 });
