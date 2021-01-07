@@ -9,7 +9,13 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css';
 window.Vue = require('vue');
 import Vue from "vue";
 import Vuetify from "vuetify";
+import router from "./Router/router.js"
+import AppStorage from './Helpers/AppStorage';
+import Token from './Helpers/Token';
 Vue.use(Vuetify);
+//importing user helper class
+import User from './Helpers/User';
+window.User = User;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,7 +34,7 @@ Vue.component('app-home', AppHome);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import router from "./Router/router.js"
+
 const app = new Vue({
     vuetify: new Vuetify(),
     el: '#app',
