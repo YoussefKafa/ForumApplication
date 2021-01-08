@@ -19,7 +19,7 @@ class Token {
         //takes iss and returns isValid
     isValid(data) {
         if (data) {
-            return data == "http://127.0.0.1:8000/api/auth/login" ?
+            return data == "http://127.0.0.1:8000/api/auth/login" || "http://127.0.0.1:8000/api/auth/signup" ?
                 true : false
         }
         return false

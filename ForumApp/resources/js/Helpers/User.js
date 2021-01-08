@@ -6,7 +6,10 @@ class User {
 
             res => {
                 this.saveData(res.data.access_token, res.data.user_name)
-            })
+            }).
+        catch(
+            error => console.log(error.response.data)
+        )
     }
     saveData(access_token, user_name) {
 

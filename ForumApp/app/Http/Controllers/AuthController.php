@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Requests\SignupRequest;
+use SebastianBergmann\Environment\Console;
 
 class AuthController extends Controller
 {
@@ -35,10 +36,7 @@ class AuthController extends Controller
 
 
 
-public function signup(Request $request){
-User::create($request->all());
-return $this->login($request);
-}
+
 
 
     /**
@@ -90,4 +88,8 @@ return $this->login($request);
         'user_name' => auth()->user()->name
     ]);
     }
+    public function signup( SignupRequest $request ){
+User::create($request->all());
+return $this->login($request);
+}
 }
